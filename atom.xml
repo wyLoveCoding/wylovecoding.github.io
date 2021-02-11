@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-02-11T11:15:40.625Z</updated>
+    <updated>2021-02-11T11:27:47.885Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -11,15 +11,15 @@
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
     <entry>
-        <title type="html"><![CDATA[第一次写博客]]></title>
+        <title type="html"><![CDATA[启程]]></title>
         <id>https://wylovecoding.github.io/post/hello-gridea/</id>
         <link href="https://wylovecoding.github.io/post/hello-gridea/">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
+        <updated>2021-02-11T11:20:29.000Z</updated>
         <content type="html"><![CDATA[<p>当我想记录或者分享一些东西，开一个博客网站或许是一个不错的主意。</p>
-<p>我尝试过hexo + github pages来搭建博客，这对于一个新人来说无疑是复杂的，而我不会那么轻易放弃，我又是谷歌又是百度，折腾了大半夜之后，终于，我发现了Gridea这么个东西，真香，让hexo见鬼去吧！</p>
-<p>我还打算记录一下Gridea的简单使用。</p>
-<p>首先我们可以去到<a href = "https://gridea.dev/">Gridea</a>的主页去了解它！</p>
+<p>我尝试过hexo + github pages来搭建博客，这对于一个新人来说无疑是复杂的，而我不会那么轻易放弃，我谷歌又百度，折腾了大半夜之后，终于，我发现了Gridea这么个东西，真香，让hexo见鬼去吧！</p>
+<p>这也是我第一次记录博客，不会使用一些可以使文章阅读性更强的技巧，当然我会慢慢的去学习这些。我即将要开始学习Java的一些东西，届时我打算记录每天的学习总结以及遇到的一些问题。诚如博客标题，这里将记录一位小白的成长历程，希望大家多多关照。<s>小声逼逼：应该也不会有什么浏览量的说</s></p>
+<p>现在是2021年2月11日，大年三十，祝大家新年快乐😘</p>
 ]]></content>
     </entry>
 </feed>
