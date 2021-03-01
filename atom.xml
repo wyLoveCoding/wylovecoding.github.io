@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-02-11T11:42:01.470Z</updated>
+    <updated>2021-03-01T03:00:44.566Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,141 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[数据结构学习——栈（二）]]></title>
+        <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/</id>
+        <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/">
+        </link>
+        <updated>2021-03-01T02:59:08.000Z</updated>
+        <content type="html"><![CDATA[<p>使用栈实现数制转换</p>
+<pre><code>/*
+    使用栈来实现数制转换
+ */
+public class StackForNumberConversion {
+    public static void numberConversion(int num, int numberSystem) {
+        if (numberSystem &lt;= 0)
+            System.out.println(&quot;The number to reserve must be bigger than zero !&quot;);
+
+        Stack&lt;Integer&gt; s = new Stack&lt;&gt;();
+        while (num &gt;= numberSystem){
+            s.push(num % numberSystem);
+            num = num / numberSystem;
+        }
+        s.push(num);
+
+//        s.forEach(System.out::print);
+        while (!s.isEmpty()) {
+            System.out.print(s.pop());
+        }
+
+
+
+    }
+
+    public static void main(String[] args) {
+        numberConversion(12, 0);    
+    }
+
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[数据结构学习——栈（一）]]></title>
+        <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-yi/</id>
+        <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-yi/">
+        </link>
+        <updated>2021-03-01T02:17:28.000Z</updated>
+        <content type="html"><![CDATA[<p>使用链表结构模拟栈的实现（Java语言）</p>
+<pre><code>/*
+    栈的链表实现
+
+ */
+public class StackImpl_1&lt;T&gt; {
+    private int size;   //栈的大小
+    private Node head;  //栈顶元素
+
+    /*
+        栈的初始化
+     */
+    public StackImpl_1() {
+        size = 0;
+        head = null;
+    }
+
+    /**
+     * 进栈操作
+     * @param   t-即将进栈的元素
+     */
+        public void push(T t){
+        Node newNode = new Node(t);
+        if (size &gt; 0){
+            newNode.next = head;
+        }
+        head = newNode;
+        size ++;
+    }
+
+    /**
+     * 出栈操作
+     * @return 返回刚刚出栈的元素
+     */
+    public T pop(){
+        if (size == 0)
+            return null;
+        else {
+            Node deletedNode = head;
+            head = head.next != null ? head.next : null;
+            size --;
+            return deletedNode.t;
+        }
+    }
+
+    /**
+     * top操作，获取栈顶元素
+     * @return  返回栈顶元素
+     */
+    public T top(){
+        return head != null ? head.t : null;
+    }
+
+    /**
+     * 遍历栈
+     * @param stack-
+     */
+    public void scanStack(StackImpl_1&lt;T&gt; stack){
+        if (stack.size == 0)
+            return;
+        System.out.print(stack.pop() + &quot; &quot;);
+        scanStack(stack);
+
+    }
+
+    private class Node{
+        public T t;
+        public Node next;
+
+        public Node(T t) {
+            this.t = t;
+        }
+    }
+
+    public static void main(String[] args) {
+        StackImpl_1&lt;String&gt; stack1 = new StackImpl_1&lt;&gt;();
+        stack1.push(&quot;A&quot;);
+        stack1.push(&quot;B&quot;);
+        stack1.push(&quot;C&quot;);
+        stack1.push(&quot;D&quot;);
+        stack1.push(&quot;E&quot;);
+
+        stack1.scanStack(stack1);
+        System.out.println(stack1.top());
+
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[启程]]></title>
         <id>https://wylovecoding.github.io/post/hello-gridea/</id>

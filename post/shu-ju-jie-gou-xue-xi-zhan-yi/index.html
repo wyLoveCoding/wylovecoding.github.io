@@ -30,41 +30,9 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            只要思想不滑坡，办法总比困难多
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/wyLoveCoding" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="ri-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="https://t.me/wy_wy_wy" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="ri-telegram-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=37785432&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="ri-qq-line"></i>
-                </a>
-              
+          <div class="toc-container hidden lg:block">
             
           </div>
         </div>
@@ -109,33 +77,166 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="ri-bookmark-line"></i> Gridea
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-      <a href="https://wylovecoding.github.io/post/hello-gridea/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://wylovecoding.github.io/post-images/hello-gridea.png'">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——栈（一）</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2021-03-01 / 2 min read
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://wylovecoding.github.io/post/hello-gridea/">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">启程</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2021-02-11 / 1 min read</div>
-    </div>
-  </section>
+        <div class="post-content yue">
+          <p>使用链表结构模拟栈的实现（Java语言）</p>
+<pre><code>/*
+    栈的链表实现
 
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
+ */
+public class StackImpl_1&lt;T&gt; {
+    private int size;   //栈的大小
+    private Node head;  //栈顶元素
+
+    /*
+        栈的初始化
+     */
+    public StackImpl_1() {
+        size = 0;
+        head = null;
+    }
+
+    /**
+     * 进栈操作
+     * @param   t-即将进栈的元素
+     */
+        public void push(T t){
+        Node newNode = new Node(t);
+        if (size &gt; 0){
+            newNode.next = head;
+        }
+        head = newNode;
+        size ++;
+    }
+
+    /**
+     * 出栈操作
+     * @return 返回刚刚出栈的元素
+     */
+    public T pop(){
+        if (size == 0)
+            return null;
+        else {
+            Node deletedNode = head;
+            head = head.next != null ? head.next : null;
+            size --;
+            return deletedNode.t;
+        }
+    }
+
+    /**
+     * top操作，获取栈顶元素
+     * @return  返回栈顶元素
+     */
+    public T top(){
+        return head != null ? head.t : null;
+    }
+
+    /**
+     * 遍历栈
+     * @param stack-
+     */
+    public void scanStack(StackImpl_1&lt;T&gt; stack){
+        if (stack.size == 0)
+            return;
+        System.out.print(stack.pop() + &quot; &quot;);
+        scanStack(stack);
+
+    }
+
+    private class Node{
+        public T t;
+        public Node next;
+
+        public Node(T t) {
+            this.t = t;
+        }
+    }
+
+    public static void main(String[] args) {
+        StackImpl_1&lt;String&gt; stack1 = new StackImpl_1&lt;&gt;();
+        stack1.push(&quot;A&quot;);
+        stack1.push(&quot;B&quot;);
+        stack1.push(&quot;C&quot;);
+        stack1.push(&quot;D&quot;);
+        stack1.push(&quot;E&quot;);
+
+        stack1.scanStack(stack1);
+        System.out.println(stack1.top());
+
+    }
+}
+</code></pre>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/ov8AxLVRR/">
+            <span class="flex-auto">Java</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/Cy8dFWKpa/">
+            <span class="flex-auto">数据结构学习</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  数据结构学习——栈（二）
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://wylovecoding.github.io/post/hello-gridea/">
+                <h3 class="post-title">
+                  启程
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '0336ce3b4548dfa0ca0c',
+    clientSecret: '6ac1508cfb95a6b54215894ea49a6e18920e546f',
+    repo: 'wylovecoding.github.io',
+    owner: 'wyLoveCoding',
+    admin: ['wyLoveCoding'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
       </div>
     </div>
