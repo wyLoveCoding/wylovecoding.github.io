@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-01T03:12:25.684Z</updated>
+    <updated>2021-03-01T03:37:38.791Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -55,7 +55,14 @@ public class StackForNumberConversion {
         <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-yi/">
         </link>
         <updated>2021-03-01T02:17:28.000Z</updated>
-        <content type="html"><![CDATA[<p>使用链表结构模拟栈的实现（Java语言）</p>
+        <content type="html"><![CDATA[<ol>
+<li>
+<p>栈（stack）是限制插入和删除只能在同一个位置（即栈顶）的表，有时也叫做后进先出（LIFO）表，对栈的基本操作有push进栈、pop出栈等。栈可以有两种实现方式分别是数组和链表，下面我们用链表来模拟栈的实现。</p>
+</li>
+<li>
+<p>使用链表结构模拟栈的实现（Java语言）</p>
+</li>
+</ol>
 <pre><code>/*
     栈的链表实现
 
