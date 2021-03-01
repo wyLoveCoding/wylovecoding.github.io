@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-01T03:37:38.791Z</updated>
+    <updated>2021-03-01T07:31:42.854Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,112 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[数据结构学习——队列]]></title>
+        <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-dui-lie-yi/</id>
+        <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-dui-lie-yi/">
+        </link>
+        <updated>2021-03-01T06:06:57.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>同栈一样，队列（queue）也是表。然而使用队列时插入在一端进行删除在另一端进行。区别于栈的后进先出，队列是先进先出。</li>
+<li>队列的基本操作有入队（enqueue），即在队尾（rear）插入一个元素；出队（dequeue），即删除队头（front）元素。</li>
+<li>数组模拟实现队列。</li>
+</ol>
+<pre><code>class Test01{
+    public static void main(String[] args) {
+        QueueImpl&lt;Integer&gt; arr = new QueueImpl&lt;&gt;();
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        arr.add(4);
+        arr.add(5);
+        arr.add(6);
+        System.out.println(arr.size()+&quot; &quot;+arr.isEmpty());
+        while(!arr.isEmpty()){
+            Integer temp = arr.remove();
+            System.out.println(temp);
+        }
+
+    }
+}
+
+class QueueImpl&lt;T&gt; implements MyQueue&lt;T&gt;{
+    private T[] data;
+    private int size;
+    private int front;
+    private int rear;
+    public QueueImpl() {
+        data = (T[])new Object[3];
+        size = 0;
+        front = 0;
+        rear = 0;
+    }
+
+    @Override
+    public void add(T t) {
+        if(isFull()){
+            resize();
+            front = 0;
+        }
+        rear = (front+size)%data.length;
+        data[rear] = t;
+        size++;
+    }
+
+    @Override
+    public T remove() {
+        if(isEmpty()){
+            throw new RuntimeException(&quot;queue is empty!&quot;);
+        }
+        T tempData = data[front];
+        data[front] = null;
+        front = (front+1)%data.length;
+        size--;
+        return tempData;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public T front() {
+        if(isEmpty()){
+            throw new RuntimeException(&quot;queue is empty!&quot;);
+        }
+        return data[front];
+    }
+
+    public boolean isFull(){
+        return size == data.length;
+    }
+
+    public void resize(){
+        T[] tmp = (T[])new Object[data.length*2];
+        System.arraycopy(data, 0, tmp, 0, data.length);
+        data = tmp;
+        tmp = null;
+    }
+
+}
+
+interface MyQueue&lt;T&gt; {
+    void add(T t);
+    T remove();
+    int size();
+    boolean isEmpty();
+    T front();
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数据结构学习——栈（二）]]></title>
         <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/</id>
