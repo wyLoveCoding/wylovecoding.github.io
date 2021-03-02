@@ -78,141 +78,38 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——队列</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——树（二）</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2021-03-01 / 2 min read
+          2021-03-02 / 2 min read
         </div>
         
         <div class="post-content yue">
           <ol>
-<li>同栈一样，队列（queue）也是表。然而使用队列时插入在一端进行删除在另一端进行。区别于栈的后进先出，队列是先进先出。</li>
-<li>队列的基本操作有入队（enqueue），即在队尾（rear）插入一个元素；出队（dequeue），即删除队头（front）元素。</li>
-<li>数组模拟实现队列。</li>
+<li>在计算机科学里，树的遍历（也称为树的搜索）是图的遍历的一种，指的是按照某种规则，不重复地访问某种树的所有节点的过程。具体的访问操作可能是检查节点的值、更新节点的值等。不同的遍历方式，其访问节点的顺序是不一样的。</li>
+<li>先（根）序遍历：指的是尽可能先去访问根节点，直到该节点为叶子节点，然后对其左、右子树分别进行先序遍历的过程。（根-&gt;左-&gt;右）<br>
+<img src="https://wylovecoding.github.io/post-images/1614662308407.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：F-&gt;B-&gt;A-&gt;D-&gt;C-&gt;E-&gt;G-&gt;I-&gt;H</li>
+<li>中（根）序遍历：指的是尽可能先去访问左子树，直到该节点为叶子节点，然后访问其根节点，最后对右子树进行中序遍历的过程。（左-&gt;根-&gt;右）<br>
+<img src="https://wylovecoding.github.io/post-images/1614662831044.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;F-&gt;G-&gt;H-&gt;I</li>
+<li>后（根）序遍历：指的是尽可能先去访问左子树，直到该节点为叶子节点，接着对右子树进行后序遍历，最后访问其根节点的过程。（左-&gt;右-&gt;根）<br>
+<img src="https://wylovecoding.github.io/post-images/1614663344502.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：A-&gt;C-&gt;E-&gt;D-&gt;B-&gt;H-&gt;I-&gt;G-&gt;F</li>
 </ol>
-<pre><code>class Test01{
-    public static void main(String[] args) {
-        QueueImpl&lt;Integer&gt; arr = new QueueImpl&lt;&gt;();
-        arr.add(1);
-        arr.add(2);
-        arr.add(3);
-        arr.add(4);
-        arr.add(5);
-        arr.add(6);
-        System.out.println(arr.size()+&quot; &quot;+arr.isEmpty());
-        while(!arr.isEmpty()){
-            Integer temp = arr.remove();
-            System.out.println(temp);
-        }
-
-    }
-}
-
-class QueueImpl&lt;T&gt; implements MyQueue&lt;T&gt;{
-    private T[] data;
-    private int size;
-    private int front;
-    private int rear;
-    public QueueImpl() {
-        data = (T[])new Object[3];
-        size = 0;
-        front = 0;
-        rear = 0;
-    }
-
-    @Override
-    public void add(T t) {
-        if(isFull()){
-            resize();
-            front = 0;
-        }
-        rear = (front+size)%data.length;
-        data[rear] = t;
-        size++;
-    }
-
-    @Override
-    public T remove() {
-        if(isEmpty()){
-            throw new RuntimeException(&quot;queue is empty!&quot;);
-        }
-        T tempData = data[front];
-        data[front] = null;
-        front = (front+1)%data.length;
-        size--;
-        return tempData;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
-    public T front() {
-        if(isEmpty()){
-            throw new RuntimeException(&quot;queue is empty!&quot;);
-        }
-        return data[front];
-    }
-
-    public boolean isFull(){
-        return size == data.length;
-    }
-
-    public void resize(){
-        T[] tmp = (T[])new Object[data.length*2];
-        System.arraycopy(data, 0, tmp, 0, data.length);
-        data = tmp;
-        tmp = null;
-    }
-
-}
-
-interface MyQueue&lt;T&gt; {
-    void add(T t);
-    T remove();
-    int size();
-    boolean isEmpty();
-    T front();
-}
-
-</code></pre>
 
         </div>
 
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/ov8AxLVRR/">
-            <span class="flex-auto">Java</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/Cy8dFWKpa/">
-            <span class="flex-auto">数据结构学习</span>
-          </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-yi/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  数据结构学习——树（一）
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/">
+              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-yi/">
                 <h3 class="post-title">
-                  数据结构学习——栈（二）
+                  数据结构学习——树（一）
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>

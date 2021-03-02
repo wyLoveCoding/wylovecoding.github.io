@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-02T05:02:53.090Z</updated>
+    <updated>2021-03-02T05:37:06.672Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[数据结构学习——树（二）]]></title>
+        <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-er/</id>
+        <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-er/">
+        </link>
+        <updated>2021-03-02T05:02:56.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>在计算机科学里，树的遍历（也称为树的搜索）是图的遍历的一种，指的是按照某种规则，不重复地访问某种树的所有节点的过程。具体的访问操作可能是检查节点的值、更新节点的值等。不同的遍历方式，其访问节点的顺序是不一样的。</li>
+<li>先（根）序遍历：指的是尽可能先去访问根节点，直到该节点为叶子节点，然后对其左、右子树分别进行先序遍历的过程。（根-&gt;左-&gt;右）<br>
+<img src="https://wylovecoding.github.io/post-images/1614662308407.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：F-&gt;B-&gt;A-&gt;D-&gt;C-&gt;E-&gt;G-&gt;I-&gt;H</li>
+<li>中（根）序遍历：指的是尽可能先去访问左子树，直到该节点为叶子节点，然后访问其根节点，最后对右子树进行中序遍历的过程。（左-&gt;根-&gt;右）<br>
+<img src="https://wylovecoding.github.io/post-images/1614662831044.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：A-&gt;B-&gt;C-&gt;D-&gt;E-&gt;F-&gt;G-&gt;H-&gt;I</li>
+<li>后（根）序遍历：指的是尽可能先去访问左子树，直到该节点为叶子节点，接着对右子树进行后序遍历，最后访问其根节点的过程。（左-&gt;右-&gt;根）<br>
+<img src="https://wylovecoding.github.io/post-images/1614663344502.png" alt="" loading="lazy"><br>
+如图的节点访问顺序为：A-&gt;C-&gt;E-&gt;D-&gt;B-&gt;H-&gt;I-&gt;G-&gt;F</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数据结构学习——树（一）]]></title>
         <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-yi/</id>
