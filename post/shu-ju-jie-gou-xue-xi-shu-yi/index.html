@@ -78,133 +78,91 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——栈（一）</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——树（一）</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2021-03-01 / 2 min read
+          2021-03-02 / 4 min read
         </div>
         
         <div class="post-content yue">
-          <ol>
-<li>
-<p>栈（stack）是限制插入和删除只能在同一个位置（即栈顶）的表，有时也叫做后进先出（LIFO）表，对栈的基本操作有push进栈、pop出栈等。栈可以有两种实现方式分别是数组和链表，下面我们用链表来模拟栈的实现。</p>
-</li>
-<li>
-<p>使用链表结构模拟栈的实现（Java语言）</p>
-</li>
-</ol>
-<pre><code>/*
-    栈的链表实现
-
- */
-public class StackImpl_1&lt;T&gt; {
-    private int size;   //栈的大小
-    private Node head;  //栈顶元素
-
-    /*
-        栈的初始化
-     */
-    public StackImpl_1() {
-        size = 0;
-        head = null;
-    }
-
-    /**
-     * 进栈操作
-     * @param   t-即将进栈的元素
-     */
-        public void push(T t){
-        Node newNode = new Node(t);
-        if (size &gt; 0){
-            newNode.next = head;
-        }
-        head = newNode;
-        size ++;
-    }
-
-    /**
-     * 出栈操作
-     * @return 返回刚刚出栈的元素
-     */
-    public T pop(){
-        if (size == 0)
-            return null;
-        else {
-            Node deletedNode = head;
-            head = head.next != null ? head.next : null;
-            size --;
-            return deletedNode.t;
-        }
-    }
-
-    /**
-     * top操作，获取栈顶元素
-     * @return  返回栈顶元素
-     */
-    public T top(){
-        return head != null ? head.t : null;
-    }
-
-    /**
-     * 遍历栈
-     * @param stack-
-     */
-    public void scanStack(StackImpl_1&lt;T&gt; stack){
-        if (stack.size == 0)
-            return;
-        System.out.print(stack.pop() + &quot; &quot;);
-        scanStack(stack);
-
-    }
-
-    private class Node{
-        public T t;
-        public Node next;
-
-        public Node(T t) {
-            this.t = t;
-        }
-    }
-
-    public static void main(String[] args) {
-        StackImpl_1&lt;String&gt; stack1 = new StackImpl_1&lt;&gt;();
-        stack1.push(&quot;A&quot;);
-        stack1.push(&quot;B&quot;);
-        stack1.push(&quot;C&quot;);
-        stack1.push(&quot;D&quot;);
-        stack1.push(&quot;E&quot;);
-
-        stack1.scanStack(stack1);
-        System.out.println(stack1.top());
-
-    }
-}
+          <p>💛1. 树（英语：tree）是一种抽象数据类型（ADT）或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&gt;0）个有限节点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。它具有以下的特点：</p>
+<pre><code>    ◾ 每个节点都只有有限个子节点或无子节点；
+    ◾ 没有父节点的节点称为根节点；
+    ◾ 每一个非根节点有且只有一个父节点；
+    ◾ 除了根节点外，每个子节点可以分为多个不相交的子树；
+    ◾ 树里面没有环路(cycle)
 </code></pre>
-
+<p><img src="https://wylovecoding.github.io/post-images/1614660213615.png" alt="" loading="lazy"><br>
+💚2. 有关树的一些术语：</p>
+<pre><code>        ◾ 节点的度：一个节点含有的子树的个数称为该节点的度；
+        ◾ 树的度：一棵树中，最大的节点度称为树的度；
+        ◾ 叶节点或终端节点：度为零的节点；
+        ◾ 非终端节点或分支节点：度不为零的节点；
+        ◾ 父亲节点或父节点：若一个节点含有子节点，则这个节点称为其子节点的父节点；
+        ◾  孩子节点或子节点：一个节点含有的子树的根节点称为该节点的子节点；
+        ◾ 兄弟节点：具有相同父节点的节点互称为兄弟节点；
+        ◾ 节点的层次：从根开始定义起，根为第1层，根的子节点为第2层，以此类推；
+        ◾ 深度：对于任意节点n,n的深度为从根到n的唯一路径长，根的深度为0；
+        ◾ 高度：对于任意节点n,n的高度为从n到一片树叶的最长路径长，所有树叶的高度为0；
+        ◾ 堂兄弟节点：父节点在同一层的节点互为堂兄弟；
+        ◾ 节点的祖先：从根到该节点所经分支上的所有节点；
+        ◾ 子孙：以某节点为根的子树中任一节点都称为该节点的子孙。
+        ◾ 森林：由m（m&gt;=0）棵互不相交的树的集合称为森林；
+</code></pre>
+<p>💙3. 树的种类：</p>
+<pre><code>    ◾ 无序树：树中任意节点的子节点之间没有顺序关系，这种树称为无序树，也称为自由树；
+    ◾ 有序树：树中任意节点的子节点之间有顺序关系，这种树称为有序树； 　
+    ◾ 二叉树：每个节点最多含有两个子树的树称为二叉树； 　　
+    ◾ 完全二叉树：对于一颗二叉树，假设其深度为d（d&gt;1）。除了第d层外，其它各层的节点数目均已达最大值，且第d层所有节点从左向右连续地紧密排列，这样的二叉树被称为完全二叉树； 　　　
+    ◾ 满二叉树：所有叶节点都在最底层的完全二叉树； 　　
+    ◾ 平衡二叉树（AVL树）：当且仅当任何节点的两棵子树的高度差不大于1的二叉树； 　　
+    ◾ 排序二叉树(二叉查找树（英语：Binary Search Tree))：也称二叉搜索树、有序二叉树； 　
+    ◾ 霍夫曼树：带权路径最短的二叉树称为哈夫曼树或最优二叉树； 　　
+    ◾ B树：一种对读写操作进行优化的自平衡的二叉查找树，能够保持数据有序，拥有多于两个子树。
+</code></pre>
+<p>💗4. 树的抽象：</p>
+<table>
+    <tr>
+        <th>方法名</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td>getElement()</td>
+        <td>返回存放于当前节点处的对象</td>
+    </tr>
+    <tr>
+        <td>setElement(e)</td>
+        <td>将对象 e 存入当前节点，并返回其中此前所存的内容</td>
+    </tr>
+    <tr>
+        <td>getParent()</td>
+        <td>返回当前节点的父节点</td>
+    </tr>
+    <tr>
+        <td>getFirstChild()</td>
+        <td>返回当前节点的长子</td>
+    </tr>
+    <tr>
+        <td>getNextSibling()</td>
+        <td>返回当前节点的最大弟弟</td>
+    </tr>
+</table>
         </div>
 
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/ov8AxLVRR/">
-            <span class="flex-auto">Java</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/Cy8dFWKpa/">
-            <span class="flex-auto">数据结构学习</span>
-          </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/">
+
+          
+            <div class="next-post">
+              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-dui-lie-yi/">
                 <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  数据结构学习——栈（二）
+                  数据结构学习——队列
+                  <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
             </div>
-          
-
           
         </div>
 
