@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-02T05:40:36.103Z</updated>
+    <updated>2021-03-03T10:48:01.210Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,191 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[数据结构学习——二叉搜索（排序）树的实现]]></title>
+        <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-er-cha-sou-suo-pai-xu-shu-de-shi-xian/</id>
+        <link href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-er-cha-sou-suo-pai-xu-shu-de-shi-xian/">
+        </link>
+        <updated>2021-03-03T05:52:48.000Z</updated>
+        <content type="html"><![CDATA[<p>下面将使用Java语言分别实现二叉搜索树的 判空、置空、 插入、 删除、 包含等操作。</p>
+<pre><code>/*
+    二叉查找树的实现
+*/
+public class BinarySearchTree &lt;T extends Comparable&lt;? super T&gt;&gt;{
+    private static class BinaryNode&lt;T&gt; {
+        //Constructors
+        BinaryNode(T theElement) {
+            this(theElement, null, null);
+        }
+
+        BinaryNode(T theElement, BinaryNode&lt;T&gt; lt, BinaryNode&lt;T&gt; rt) {
+            element = theElement;
+            left = lt;
+            right = rt;
+        }
+
+        T element;
+        BinaryNode&lt;T&gt; left;
+        BinaryNode&lt;T&gt; right;
+    }
+
+    private BinaryNode&lt;T&gt; root;
+
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    public void makeEmpty() {
+        root = null;
+    }
+
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    public boolean contains(T t) {
+        return contains(t, root);
+    }
+
+    public T findMin() {
+        if ( isEmpty() ) throw new BufferUnderflowException();
+        return findMin(root).element;
+    }
+
+    public T findMax() {
+        if ( isEmpty() ) throw new BufferUnderflowException();
+        return findMax(root).element;
+    }
+
+    public void insert(T t) {
+        root = insert(t, root);
+    }
+
+    public void remove(T t) {
+        root = remove(t, root);
+        System.out.println(root.element);
+    }
+
+    public void printTree() {
+
+    }
+
+    /**
+    * 使用递归进行匹配：将传入的值与根节点的值进行比较，若小于则继续去左子树比较，直到相等；反之则去右子树比较。
+    * @param t -需要查找的元素
+    * @param node -根节点
+    * @return  存在则返回true；否则返回false
+    */
+    private boolean contains(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return false;
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0)
+            return contains(t, node.left);
+        else if (compareResult &gt; 0)
+            return contains(t, node.right);
+        else
+            return true;
+    }
+
+    /**
+    * 递归调用来找到树中的最小值。尽可能去访问左子树，直到其为叶子节点时，返回它。
+    * @param node -根节点
+    * @return 返回最小值所在的节点
+    */
+    private BinaryNode&lt;T&gt; findMin(BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return null;
+        else if (node.left == null)
+            return node;
+        return findMin(node.left);
+    }
+
+    /**
+    * 递归调用来找到树中的最大值。尽可能去访问右子树，直到其为叶子节点时，返回它。
+    * @param node -根节点
+    * @return 返回最大值所在的节点
+    */
+    private BinaryNode&lt;T&gt; findMax(BinaryNode&lt;T&gt; node) {
+//        if (node == null)
+//            return null;
+//        else if (node.right == null)
+//            return node;
+//        return findMin(node.right);
+        if (node != null)
+            while (node.right != null)
+                node = root.right;
+
+        return node;
+    }
+
+    /**
+    * 类似于contains操作，递归地去查找适合插入的位置；我们暂时不考虑插入重复元素时的操作
+    * @param t -要插入的元素
+    * @param node -根节点
+    * @return 返回插入之后的根节点
+    */
+    private BinaryNode&lt;T&gt; insert(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return new BinaryNode&lt;&gt;(t, null, null);
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0)
+            node.left = insert(t, node.left);
+        else if (compareResult &gt; 0)
+            node.right = insert(t, node.right);
+        else
+            /*我们先不考虑插入重复元素时的操作*/;
+
+        return node;
+
+    }
+
+    private BinaryNode&lt;T&gt; remove(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return node;    //空树不做任何操作，直接返回。
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0) {
+            node.left = remove(t, node.left);
+        }else if (compareResult &gt; 0) {
+            node.right = remove(t, node.right);
+        }else if (node.left != null &amp;&amp; node.right != null){
+            node.element = findMin(node.right).element;
+            node.right = remove(node.element, node.right);
+        }else
+            node = (node.left != null) ? node.left : node.right;
+
+        return node;
+    }
+
+    private void printTree(BinaryNode&lt;T&gt; node) {
+
+    }
+}
+
+class Test02 {
+    public static void main(String[] args) {
+        BinarySearchTree&lt;Integer&gt; bst = new BinarySearchTree&lt;&gt;();
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(1);
+        bst.insert(4);
+        bst.insert(6);
+        bst.insert(8);
+        bst.insert(9);
+
+        bst.remove(4);
+
+    }
+}</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数据结构学习——树（二）]]></title>
         <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-er/</id>

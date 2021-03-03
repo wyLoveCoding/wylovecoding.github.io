@@ -78,43 +78,189 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——栈（二）</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">数据结构学习——二叉搜索（排序）树的实现</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2021-03-01 / 1 min read
+          2021-03-03 / 4 min read
         </div>
         
         <div class="post-content yue">
-          <p>使用栈实现数制转换</p>
+          <p>下面将使用Java语言分别实现二叉搜索树的 判空、置空、 插入、 删除、 包含等操作。</p>
 <pre><code>/*
-    使用栈来实现数制转换
- */
-public class StackForNumberConversion {
-    public static void numberConversion(int num, int numberSystem) {
-        if (numberSystem &lt;= 0)
-            System.out.println(&quot;The number to reserve must be bigger than zero !&quot;);
-
-        Stack&lt;Integer&gt; s = new Stack&lt;&gt;();
-        while (num &gt;= numberSystem){
-            s.push(num % numberSystem);
-            num = num / numberSystem;
-        }
-        s.push(num);
-
-//        s.forEach(System.out::print);
-        while (!s.isEmpty()) {
-            System.out.print(s.pop());
+    二叉查找树的实现
+*/
+public class BinarySearchTree &lt;T extends Comparable&lt;? super T&gt;&gt;{
+    private static class BinaryNode&lt;T&gt; {
+        //Constructors
+        BinaryNode(T theElement) {
+            this(theElement, null, null);
         }
 
+        BinaryNode(T theElement, BinaryNode&lt;T&gt; lt, BinaryNode&lt;T&gt; rt) {
+            element = theElement;
+            left = lt;
+            right = rt;
+        }
 
+        T element;
+        BinaryNode&lt;T&gt; left;
+        BinaryNode&lt;T&gt; right;
+    }
+
+    private BinaryNode&lt;T&gt; root;
+
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    public void makeEmpty() {
+        root = null;
+    }
+
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    public boolean contains(T t) {
+        return contains(t, root);
+    }
+
+    public T findMin() {
+        if ( isEmpty() ) throw new BufferUnderflowException();
+        return findMin(root).element;
+    }
+
+    public T findMax() {
+        if ( isEmpty() ) throw new BufferUnderflowException();
+        return findMax(root).element;
+    }
+
+    public void insert(T t) {
+        root = insert(t, root);
+    }
+
+    public void remove(T t) {
+        root = remove(t, root);
+        System.out.println(root.element);
+    }
+
+    public void printTree() {
 
     }
 
-    public static void main(String[] args) {
-        numberConversion(12, 0);    
+    /**
+    * 使用递归进行匹配：将传入的值与根节点的值进行比较，若小于则继续去左子树比较，直到相等；反之则去右子树比较。
+    * @param t -需要查找的元素
+    * @param node -根节点
+    * @return  存在则返回true；否则返回false
+    */
+    private boolean contains(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return false;
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0)
+            return contains(t, node.left);
+        else if (compareResult &gt; 0)
+            return contains(t, node.right);
+        else
+            return true;
     }
 
+    /**
+    * 递归调用来找到树中的最小值。尽可能去访问左子树，直到其为叶子节点时，返回它。
+    * @param node -根节点
+    * @return 返回最小值所在的节点
+    */
+    private BinaryNode&lt;T&gt; findMin(BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return null;
+        else if (node.left == null)
+            return node;
+        return findMin(node.left);
+    }
+
+    /**
+    * 递归调用来找到树中的最大值。尽可能去访问右子树，直到其为叶子节点时，返回它。
+    * @param node -根节点
+    * @return 返回最大值所在的节点
+    */
+    private BinaryNode&lt;T&gt; findMax(BinaryNode&lt;T&gt; node) {
+//        if (node == null)
+//            return null;
+//        else if (node.right == null)
+//            return node;
+//        return findMin(node.right);
+        if (node != null)
+            while (node.right != null)
+                node = root.right;
+
+        return node;
+    }
+
+    /**
+    * 类似于contains操作，递归地去查找适合插入的位置；我们暂时不考虑插入重复元素时的操作
+    * @param t -要插入的元素
+    * @param node -根节点
+    * @return 返回插入之后的根节点
+    */
+    private BinaryNode&lt;T&gt; insert(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return new BinaryNode&lt;&gt;(t, null, null);
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0)
+            node.left = insert(t, node.left);
+        else if (compareResult &gt; 0)
+            node.right = insert(t, node.right);
+        else
+            /*我们先不考虑插入重复元素时的操作*/;
+
+        return node;
+
+    }
+
+    private BinaryNode&lt;T&gt; remove(T t, BinaryNode&lt;T&gt; node) {
+        if (node == null)
+            return node;    //空树不做任何操作，直接返回。
+
+        int compareResult = t.compareTo(node.element);
+
+        if (compareResult &lt; 0) {
+            node.left = remove(t, node.left);
+        }else if (compareResult &gt; 0) {
+            node.right = remove(t, node.right);
+        }else if (node.left != null &amp;&amp; node.right != null){
+            node.element = findMin(node.right).element;
+            node.right = remove(node.element, node.right);
+        }else
+            node = (node.left != null) ? node.left : node.right;
+
+        return node;
+    }
+
+    private void printTree(BinaryNode&lt;T&gt; node) {
+
+    }
 }
-</code></pre>
+
+class Test02 {
+    public static void main(String[] args) {
+        BinarySearchTree&lt;Integer&gt; bst = new BinarySearchTree&lt;&gt;();
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(1);
+        bst.insert(4);
+        bst.insert(6);
+        bst.insert(8);
+        bst.insert(9);
+
+        bst.remove(4);
+
+    }
+}</code></pre>
 
         </div>
 
@@ -131,21 +277,12 @@ public class StackForNumberConversion {
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-dui-lie-yi/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  数据结构学习——队列
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-yi/">
+              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-er/">
                 <h3 class="post-title">
-                  数据结构学习——栈（一）
+                  数据结构学习——树（二）
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
