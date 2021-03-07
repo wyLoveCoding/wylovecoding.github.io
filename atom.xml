@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-03T11:52:26.496Z</updated>
+    <updated>2021-03-07T13:01:21.441Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,85 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[排序——堆排序]]></title>
+        <id>https://wylovecoding.github.io/post/pai-xu-dui-pai-xu/</id>
+        <link href="https://wylovecoding.github.io/post/pai-xu-dui-pai-xu/">
+        </link>
+        <updated>2021-03-07T13:00:08.000Z</updated>
+        <content type="html"><![CDATA[<p>堆排序的Java代码实现。</p>
+<pre><code>public class HeapSort {
+    public static void main(String[] args) {
+        Integer[] arr = {5, 7, 4, 6, 2, 1, 9, 8, 10, 3};
+        for (Integer i : heapSort(arr))
+            System.out.print(i + &quot; &quot;);
+    }
+
+    /**
+     * 排序
+     * @param arr   待排序的数组
+     * @param &lt;T&gt;   指定泛型方法
+     * @return  返回排序后的数组
+     */
+    static &lt;T extends Comparable&lt;? super T&gt;&gt; T[] heapSort(T[] arr) {
+        buildHeap(arr); //先建堆
+        //将堆顶，即最大值与堆中最后一个元素交换我位置，并“删除”最后一个元素。
+        for (int i = arr.length - 1; i &gt;= 1; i--) {
+            T temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapify(arr, 0, i-1);
+        }
+        return arr;
+    }
+
+    /**
+     * 建堆
+     * @param arr   需要排序的数组
+     * @param &lt;T&gt;   指定泛型方法
+     */
+    static &lt;T extends Comparable&lt;? super T&gt;&gt; void buildHeap(T[] arr) {
+        int N = arr.length - 1; //最后一个结点的位置
+        int index = (arr.length &gt;&gt; 1) - 1;  //从index位置开始调整，即最后一个非叶结点
+        for (int i = index; i &gt;= 0; i--)
+            heapify(arr, i, N);
+    }
+
+    /**
+     * 调整堆
+     * @param arr   待调整的数组
+     * @param index 开始调整的位置
+     * @param n 堆大小（最后一个元素的位置）
+     * @param &lt;T&gt;   泛型方法
+     */
+    static &lt;T extends Comparable&lt;? super T&gt;&gt; void heapify(T[] arr, int index, int n) {
+        int leftChild = (index &lt;&lt; 1) + 1;   //找到左子结点的位置
+        int rightChild = (index &lt;&lt; 1) + 2;  //找到右子结点的位置
+        int tempIndex;  //与当前结点比较的子结点位置
+
+        //找到需要与当前结点比较的子结点位置
+        if (leftChild &lt;= n &amp;&amp; rightChild &lt;= n)  //左右结点都存在
+            tempIndex = arr[leftChild].compareTo(arr[rightChild]) &gt; 0 ? leftChild : rightChild;
+        else if (leftChild &lt;= n)    //左结点存在
+            tempIndex = leftChild;
+        else if (rightChild &lt;= n)   //右结点存在
+            tempIndex = rightChild;
+        else                        //都不存在则说明当前结点为叶子结点，不需要调整
+            return;
+        //如果子结点比父结点大，不符合大根堆，进行调整。
+        if (arr[tempIndex].compareTo(arr[index]) &gt; 0) {
+            T tmp = arr[tempIndex];
+            arr[tempIndex] = arr[index];
+            arr[index] = tmp;
+            //调整后，将当前结点置为子结点的位置，继续判断
+            heapify(arr, tempIndex, n);
+        }
+    }
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数据结构学习——二叉搜索（排序）树的实现]]></title>
         <id>https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-er-cha-sou-suo-pai-xu-shu-de-shi-xian/</id>
