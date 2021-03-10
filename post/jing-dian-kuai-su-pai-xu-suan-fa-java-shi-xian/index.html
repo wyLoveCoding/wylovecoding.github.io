@@ -33,17 +33,7 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+            
           </div>
         </div>
       
@@ -88,28 +78,118 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">关于</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">经典快速排序算法Java实现</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-01-25 / 1 min read
+          2021-03-10 / 3 min read
         </div>
         
         <div class="post-content yue">
-          <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+          <p>代码参考自《数据结构与算法分析Java语言描述》一书。</p>
+<pre><code>public class QuickSort {
+
+    public static void main(String[] args) {
+        Integer[] arr = {5, 7, 4, 6, 2, 1, 9, 8, 10, 3};
+//        System.out.println(median3(arr, 0, arr.length - 1));
+        quickSort(arr);
+        for (Integer i : arr)
+            System.out.print(i + &quot; &quot;);
+    }
+
+    public static &lt;T extends Comparable&lt;? super T&gt;&gt; void quickSort(T[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+    /*
+        取头、尾、中的中位数作为pivot
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; T median3(T[] arr, int left, int right) {
+        int center = (left + right) &gt;&gt; 1;
+
+        if (arr[center].compareTo(arr[left]) &gt; 0)
+            swapReference(arr, left, center);
+        if (arr[right].compareTo(arr[left]) &gt; 0)
+            swapReference(arr, left, right);
+        if (arr[right].compareTo(arr[center]) &gt; 0)
+            swapReference(arr, right, center);
+
+        swapReference(arr, center, right-1);
+
+        return arr[right-1];
+    }
+    /*
+        经典快速排序算法的实现，如果元素太少，直接用插入排序
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void quickSort(T[] arr, int left, int right) {
+        if (left + CUTOFF &lt;= right) {
+            T pivot = median3(arr, left, right);
+            int i = left + 1, j = right - 2;
+
+            for ( ; ; ) {
+                while (i &lt; right - 1 &amp;&amp; arr[i++].compareTo(pivot) &lt; 0);
+                while (j &gt; left &amp;&amp; arr[j--].compareTo(pivot) &gt; 0);
+                if (i &lt; j)
+                    swapReference(arr, i, j);
+                else
+                    break;
+            }
+
+            swapReference(arr, i, right-1);
+
+            quickSort(arr, left, i-1);
+            quickSort(arr, i+1,  right);
+        }else
+            insertionSort(arr);
+    }
+    /*
+        插入排序
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void insertionSort(T[] arr) {
+        for (int i = 1; i &lt; arr.length; i++) {
+            for (int j = i; j &gt; 0; j--) {
+                if (arr[j].compareTo(arr[j-1]) &lt; 0)
+                    swapReference(arr, j, j-1);
+            }
+        }
+    }
+
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void swapReference(T[] arr, int a, int b) {
+        T tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+    private static final int CUTOFF = 8;
+}
+
+</code></pre>
 
         </div>
 
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/q70utjvai/">
+            <span class="flex-auto">算法学习</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/ov8AxLVRR/">
+            <span class="flex-auto">Java</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://wylovecoding.github.io/tag/Cy8dFWKpa/">
+            <span class="flex-auto">数据结构学习</span>
+          </a>
         
 
 
         <div class="flex justify-between py-8">
           
 
+          
+            <div class="next-post">
+              <a href="https://wylovecoding.github.io/post/pai-xu-dui-pai-xu/">
+                <h3 class="post-title">
+                  排序——堆排序
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
 

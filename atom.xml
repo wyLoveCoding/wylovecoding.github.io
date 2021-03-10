@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
     <title>萌新求职记</title>
-    <updated>2021-03-07T13:01:21.441Z</updated>
+    <updated>2021-03-10T02:20:25.062Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
@@ -10,6 +10,90 @@
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 萌新求职记</rights>
+    <entry>
+        <title type="html"><![CDATA[经典快速排序算法Java实现]]></title>
+        <id>https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/</id>
+        <link href="https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/">
+        </link>
+        <updated>2021-03-10T02:18:28.000Z</updated>
+        <content type="html"><![CDATA[<p>代码参考自《数据结构与算法分析Java语言描述》一书。</p>
+<pre><code>public class QuickSort {
+
+    public static void main(String[] args) {
+        Integer[] arr = {5, 7, 4, 6, 2, 1, 9, 8, 10, 3};
+//        System.out.println(median3(arr, 0, arr.length - 1));
+        quickSort(arr);
+        for (Integer i : arr)
+            System.out.print(i + &quot; &quot;);
+    }
+
+    public static &lt;T extends Comparable&lt;? super T&gt;&gt; void quickSort(T[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+    /*
+        取头、尾、中的中位数作为pivot
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; T median3(T[] arr, int left, int right) {
+        int center = (left + right) &gt;&gt; 1;
+
+        if (arr[center].compareTo(arr[left]) &gt; 0)
+            swapReference(arr, left, center);
+        if (arr[right].compareTo(arr[left]) &gt; 0)
+            swapReference(arr, left, right);
+        if (arr[right].compareTo(arr[center]) &gt; 0)
+            swapReference(arr, right, center);
+
+        swapReference(arr, center, right-1);
+
+        return arr[right-1];
+    }
+    /*
+        经典快速排序算法的实现，如果元素太少，直接用插入排序
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void quickSort(T[] arr, int left, int right) {
+        if (left + CUTOFF &lt;= right) {
+            T pivot = median3(arr, left, right);
+            int i = left + 1, j = right - 2;
+
+            for ( ; ; ) {
+                while (i &lt; right - 1 &amp;&amp; arr[i++].compareTo(pivot) &lt; 0);
+                while (j &gt; left &amp;&amp; arr[j--].compareTo(pivot) &gt; 0);
+                if (i &lt; j)
+                    swapReference(arr, i, j);
+                else
+                    break;
+            }
+
+            swapReference(arr, i, right-1);
+
+            quickSort(arr, left, i-1);
+            quickSort(arr, i+1,  right);
+        }else
+            insertionSort(arr);
+    }
+    /*
+        插入排序
+     */
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void insertionSort(T[] arr) {
+        for (int i = 1; i &lt; arr.length; i++) {
+            for (int j = i; j &gt; 0; j--) {
+                if (arr[j].compareTo(arr[j-1]) &lt; 0)
+                    swapReference(arr, j, j-1);
+            }
+        }
+    }
+
+    private static &lt;T extends Comparable&lt;? super T&gt;&gt; void swapReference(T[] arr, int a, int b) {
+        T tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+    private static final int CUTOFF = 8;
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[排序——堆排序]]></title>
         <id>https://wylovecoding.github.io/post/pai-xu-dui-pai-xu/</id>
