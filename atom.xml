@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wylovecoding.github.io</id>
-    <title>萌新求职记</title>
-    <updated>2021-04-06T10:48:03.143Z</updated>
+    <title>我爱刷题</title>
+    <updated>2021-04-06T10:53:34.864Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wylovecoding.github.io"/>
     <link rel="self" href="https://wylovecoding.github.io/atom.xml"/>
     <subtitle>心中无女人，编码自然神(●&apos;◡&apos;●)</subtitle>
     <logo>https://wylovecoding.github.io/images/avatar.png</logo>
     <icon>https://wylovecoding.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, 萌新求职记</rights>
+    <rights>All rights reserved 2021, 我爱刷题</rights>
     <entry>
         <title type="html"><![CDATA[经典快速排序算法Java实现]]></title>
         <id>https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/</id>
