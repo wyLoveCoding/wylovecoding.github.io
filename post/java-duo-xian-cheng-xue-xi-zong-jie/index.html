@@ -1,100 +1,217 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Java多线程学习总结 | 我爱刷题</title>
-<meta name="description" content="心中无女人，编码自然神(●&#39;◡&#39;●)">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://wylovecoding.github.io/favicon.ico?v=1617756339348">
+<link rel="shortcut icon" href="https://wylovecoding.github.io/favicon.ico?v=1617874742542">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wylovecoding.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
 
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
 
-  
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
 
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
 
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
 
-  </head>
-  <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://wylovecoding.github.io">我爱刷题</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            我爱刷题
+        </div>
     </div>
-  </div>
-</nav>
-
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>Java多线程学习总结</h1>
-            <p class="article-meta">
-              2021-04-06
-              
-            </p>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
             
-            <div class="post-content">
-              <h2 id="11-进程与线程">1.1 进程与线程</h2>
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1617874742542"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Java多线程学习总结
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-04-06 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="11-进程与线程">1.1 进程与线程</h2>
 <h3 id="111-进程">1.1.1 进程</h3>
 <blockquote>
 <p><strong>进程</strong>是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即 是一个进程从创建、运行到消亡的过程。在Java中，当我们启动main函数，其实就是启动了一个JVM的进程，而main函数所在的线程就是这个进程中的一个线程，也称主线程。</p>
@@ -216,196 +333,287 @@ Thread[线程 2,5,main]waiting get resource1
 <li>wait()方法被调用完后，线程不会自动苏醒，需要别的线程调用同一个对象上的notify()或者notifyAll()方法。sleep()方法执行完成后，线程会自动苏醒。或者可以使用wait(long timeout)方法，超时后线程会自动苏醒。</li>
 </ul>
 <h2 id="110-synchronized关键字">1.10 Synchronized关键字</h2>
+<h3 id="1101-synchronized关键字几种常见的使用形式">1.10.1 synchronized关键字几种常见的使用形式</h3>
+<ol>
+<li>修饰实例方法：作用于当前对象实例加锁，进入同步代码前要获得当前对象实例的锁。<pre><code>   synchronized void method() {
+       //业务代码
+    }
+</code></pre>
+</li>
+<li>修饰静态方法：也就是给当前类加锁，会作用于类的所有对象实例，进入同步代码前要获得当前class的锁，因为静态成员不属于任何一个实例对象，是类成员（被static关键字修饰表示这是该类的一个静态资源，不管new了多少个对象，只有一份）。所以如果一个线程A调用一个实例对象的非静态的同步方法，而线程B需要调用这个实例对象所属类的静态的同步方法，是允许的，不会发生互斥现象。因为访问静态同步方法占用的锁是当前类的锁，而访问非静态的同步方法占用的锁是当前实例对象的锁。<pre><code>synchronized void staic method() {
+    //业务代码
+}
+</code></pre>
+</li>
+<li>修饰代码块：指定加锁对象，对给定的对象/类加锁。synchronized(this|object)表示进入同步代码块前要获得给定对象的锁；synchronized(类.class)表示进入同步代码块前要获得当前class的锁。<pre><code>synchronized(this) {
+//业务代码
+}
+</code></pre>
+</li>
+</ol>
+<blockquote>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>synchronized 关键字加到 static 静态方法和 synchronized(class) 代码块上都是是给Class类上锁。</li>
+<li>synchronized关键字加到实例方法上是给对象实例上锁。</li>
+<li>尽量不要使用synchronized(String s)，因为JVM中字符串常量池具有缓存功能。</li>
+</ul>
+</blockquote>
+<h3 id="1102-synchronized关键字的应用双重检验锁实现单例模式">1.10.2 synchronized关键字的应用——双重检验锁实现单例模式</h3>
+<pre><code>public class Singleton {
+
+    private volatile static Singleton uniqueInstance;
+
+    private Singleton() {
+    }
+
+    public static Singleton getUniqueInstance() {
+       //先判断对象是否已经实例过，没有实例化过才进入加锁代码
+        if (uniqueInstance == null) {
+            //类对象加锁
+            synchronized (Singleton.class) {
+                if (uniqueInstance == null) {
+                    uniqueInstance = new Singleton();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+}
+
+</code></pre>
 <h2 id="111-cpu高速缓存">1.11 CPU高速缓存</h2>
-<h2 id="112-volatile关键字">1.12 volatile关键字</h2>
-<h2 id="113-synchronized关键字和volatile关键字的区别">1.13 Synchronized关键字和volatile关键字的区别</h2>
-<h2 id="114-线程池">1.14 线程池</h2>
-<h3 id="1141-为什么使用线程池">1.14.1 为什么使用线程池</h3>
-<h3 id="1142-实现runnable接口和callable接口的区别">1.14.2 实现Runnable接口和Callable接口的区别</h3>
-<h3 id="1143-执行execute方法和submit方法的区别">1.14.3 执行execute()方法和submit()方法的区别</h3>
-<h3 id="1144-创建线程池">1.14.4 创建线程池</h3>
-<h2 id="115-atomic原子类">1.15 Atomic原子类</h2>
-<h2 id="116-countdownlatch">1.16 CountDownLatch</h2>
+<h3 id="1111-为什么会有cpu-cache">1.11.1 为什么会有cpu cache</h3>
+<blockquote>
+<p>类比我们开发网站后台系统使用的缓存（如redis）是为了解决程序处理速度和访问常规关系型数据库速度不对等的问题。cpu缓存则是为了解决cpu处理速度和内存处理速度不对等的问题。</p>
+</blockquote>
+<h3 id="1112-cpu-cache的工作方式">1.11.2 cpu cache的工作方式</h3>
+<blockquote>
+<p>先复制一份数据到cpu cache中，当cpu需要用到的时候就可以直接从cpu cache中读取数据，当运算完成后，再将运算得到的数据写回main memory中。但是这样存在内存、缓存不一致性的问题。比如我们执行一个i++操作，如果两个线程同时执行的话，假如从cpu cache读取到 i = 1，两个线程做了i++运算之后再写回main memory之后i等于2，而正确结果应该是3.</p>
+</blockquote>
+<h2 id="112-synchronized关键字和volatile关键字的区别">1.12 Synchronized关键字和volatile关键字的区别</h2>
+<blockquote>
+<p>synchronized关键字和volatile关键字是两个互补的存在，而不是对立的存在。</p>
+</blockquote>
+<ul>
+<li>volatile关键字是线程同步的轻量级实现，所以volatile性能肯定比synchronized要好，但是volatile关键字只能用于变量，而synchronized关键字可以用来修饰方法及代码块。</li>
+<li>volatile关键字能保证数据的可见性，但不能保证数据的原子性。synchronized关键字两者都能保证</li>
+<li>volatile关键字主要用来解决变量在多个线程之间的可见性，而synchronized关键字保证的是多个线程访问资源的同步性。</li>
+</ul>
+<h2 id="113-线程池">1.13 线程池</h2>
+<h3 id="1131-为什么使用线程池">1.13.1 为什么使用线程池</h3>
+<blockquote>
+<p>池化技术相信大家已经屡见不鲜了，线程池、数据库连接池、http连接池等等都是对这个思想的应用。池化技术的思想主要是为了减少每次获取资源的消耗，提高对资源的利用率。</p>
+</blockquote>
+<p>《Java并发编程的艺术》里面有讲到使用线程池的好处：</p>
+<ul>
+<li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等待线程创建就能立即执行。</li>
+<li><strong>提高线程的可管理性</strong>。线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配、调优和监控。</li>
+</ul>
+<h3 id="1132-实现runnable接口和callable接口的区别">1.13.2 实现Runnable接口和Callable接口的区别</h3>
+<p>Runnable接口自Java1.0以来就一直存在，而Callable是在Java1.5引入的，目的就是为了处理Runnable不支持的用例。Runnable接口不会返回结果和抛出检擦异常，但是Callable接口可以。所以如果任务不需要返回结果或者抛出异常的话，推荐使用Runnable接口，这样代码看起来会更加简洁。</p>
+<p>工具类Executors可以实现Runnable对象和Callable对象之间的相互转换。</p>
+<pre><code>Executors.callable(Runnable task)
+Executors.callable(Runnable task, Object result)
+</code></pre>
+<h3 id="1133-执行execute方法和submit方法的区别">1.13.3 执行execute()方法和submit()方法的区别</h3>
+<ol>
+<li>execute()方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功与否。</li>
+<li>submit()方法用于提交需要返回值的任务，线程池会返回一个Future类型的对象，通过这个Future对象可以判断任务是否执行成功，并且可以通过Future的get()方法来获取返回值。值得注意的是get()方法会阻塞当前线程直到任务完成，而使用get(long timeout, TimeUnit unit)方法则会阻塞当前线程一段时间后立即返回，这时候有可能任务没有执行完。</li>
+</ol>
+<h3 id="1134-创建线程池">1.13.4 创建线程池</h3>
+<p>《阿里巴巴Java开发手册》中强制线程池不允许使用Executors去创建，而是通过ThreadPoolExecutor的方式。这样的处理方式可以让编码的人更加明确线程池的运行规则，规避资源耗尽的风险。</p>
+<p>Executors 返回线程池对象的弊端如下：</p>
+<ul>
+<li>FixedThreadPool 和 SingleThreadExecutor ： 允许请求的队列长度为 Integer.MAX_VALUE ，可能堆积大量的请求，从而导致 OOM。</li>
+<li>CachedThreadPool 和 ScheduledThreadPool ： 允许创建的线程数量为 Integer.MAX_VALUE ，可能会创建大量线程，从而导致 OOM。</li>
+</ul>
+<p>我们可以通过ThreadPoolExcutor类的构造方法来创建线程池对象。<br>
+<img src="https://wylovecoding.github.io/post-images/1617872211821.png" alt="" loading="lazy"></p>
+<pre><code>    /**
+     * 用给定的初始参数创建一个新的ThreadPoolExecutor。
+     */
+    public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue&lt;Runnable&gt; workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler) {
+        if (corePoolSize &lt; 0 ||
+            maximumPoolSize &lt;= 0 ||
+            maximumPoolSize &lt; corePoolSize ||
+            keepAliveTime &lt; 0)
+            throw new IllegalArgumentException();
+        if (workQueue == null || threadFactory == null || handler == null)
+            throw new NullPointerException();
+        this.corePoolSize = corePoolSize;
+        this.maximumPoolSize = maximumPoolSize;
+        this.workQueue = workQueue;
+        this.keepAliveTime = unit.toNanos(keepAliveTime);
+        this.threadFactory = threadFactory;
+        this.handler = handler;
+    }
+</code></pre>
+<h3 id="1135-threadpoolexecutor类构造方法重要参数解析">1.13.5 ThreadPoolExecutor类构造方法重要参数解析</h3>
+<ul>
+<li><strong>corePoolSize</strong>：核心线程数。定义了最小可以同时运行的线程数量。</li>
+<li><strong>maximumPoolSize</strong>：当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。</li>
+<li><strong>keepAliveTime</strong>：当线程池中的线程数量大于corePoolSize的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了keepAliveTime才会被回收销毁。</li>
+<li><strong>unit</strong>：keepAliveTime参数的时间单位。</li>
+<li><strong>workQueue</strong>：当新任务来的时候会判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列内。</li>
+<li><strong>threadFactory</strong>：executor 创建新线程的时候会用到。</li>
+<li><strong>handler</strong>：饱和策略（详见下节）。<br>
+<img src="https://wylovecoding.github.io/post-images/1617873792500.png" alt="" loading="lazy"></li>
+</ul>
+<h3 id="1136-threadpoolexecutor的饱和策略">1.13.6 ThreadPoolExecutor的饱和策略</h3>
+<p>如果当前同时运行的线程数量达到最大线程数量并且队列也已经被放满的时候，ThreadPoolExecutor定义了一些策略：</p>
+<ul>
+<li><strong>ThreadPoolExecutor.AbortPolicy</strong>：抛出RejectedExecutionException来拒绝新任务</li>
+<li><strong>ThreadPoolExecutor.CallerRunsPolicy</strong>：在任务被拒绝添加后，会调用当前线程池的所在的线程去执行被拒绝的任务。有可能会阻塞主线程。</li>
+<li><strong>ThreadPoolExecutor.DiscardPolicy</strong>：不处理新任务，直接丢弃。</li>
+<li><strong>ThreadPoolExecutor.DiscardOldestPolicy</strong>：此策略将丢弃最早的未处理的任务请求。</li>
+</ul>
+<h2 id="114-atomic原子类">1.14 Atomic原子类</h2>
+<p><strong>Atomic</strong>翻译成中文是原子的意思。在化学上我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在Java中Atomic是指一个操作是不可中断的，即使是在多个线程一起执行的时候。一个操作一旦开始，就不会被其它线程干扰。</p>
+<p>所以，所谓的原子类说简单点就是具有原子/原子操作特征的类。</p>
+<h3 id="1141-javautilconcurrent包中的原子类">1.14.1 java.util.concurrent包中的原子类</h3>
+<ol>
+<li><strong>基本类型</strong>：使用原子的方式更新基本类型。
+<ul>
+<li>AtomicInteger：整型原子类</li>
+<li>AtomicLong：长整型原子类</li>
+<li>AtomicBoolean：布尔型原子类</li>
+</ul>
+</li>
+<li><strong>数组类型</strong>：使用原子的方式更新数组的每个元素。
+<ul>
+<li>AtomicIntegerArray：整形数组原子类</li>
+<li>AtomicLongArray：长整形数组原子类</li>
+<li>AtomicReferenceArray：引用类型数组原子类</li>
+</ul>
+</li>
+<li><strong>引用类型</strong>
+<ul>
+<li>AtomicReference：引用类型原子类</li>
+<li>AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</li>
+<li>AtomicMarkableReference ：原子更新带有标记位的引用类型</li>
+</ul>
+</li>
+<li><strong>对象的属性修改类型</strong>
+<ul>
+<li>AtomicIntegerFieldUpdater：原子更新整形字段的更新器</li>
+<li>AtomicLongFieldUpdater：原子更新长整形字段的更新器</li>
+<li>AtomicReferenceFieldUpdater：原子更新引用类型字段的更新器</li>
+</ul>
+</li>
+</ol>
+<h2 id="115-countdownlatch">1.15 CountDownLatch</h2>
+<p>CountDownLatch 的作用就是 允许 count 个线程阻塞在一个地方，直至所有线程的任务都执行完毕。</p>
 
-            </div>
-          </article>
+                </div>
+            </article>
         </div>
-        <div class="paper" data-aos="fade-in">
-          
+
+        
             <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/">
-                <h3 class="post-title">
-                  经典快速排序算法Java实现
-                </h3>
-              </a>
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/" class="post-title gt-a-link">
+                    经典快速排序算法Java实现
+                </a>
             </div>
-          
-        </div>
         
-          
-            <div class="paper" data-aos="fade-in">
-              <div id="gitalk-container"></div>
-            </div>
-          
 
-          
         
-      </div>
 
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://wylovecoding.github.io/images/avatar.png?v=1617756339348" class="no-responsive avatar">
-    <div class="text-muted">心中无女人，编码自然神(●'◡'●)</div>
-    <div class="social-container">
-      
         
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/java-duo-xian-cheng-xue-xi-zong-jie/">Java多线程学习总结</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/jing-dian-kuai-su-pai-xu-suan-fa-java-shi-xian/">经典快速排序算法Java实现</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/pai-xu-dui-pai-xu/">排序——堆排序</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-er-cha-sou-suo-pai-xu-shu-de-shi-xian/">数据结构学习——二叉搜索（排序）树的实现</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-er/">数据结构学习——树（二）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-shu-yi/">数据结构学习——树（一）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-dui-lie-yi/">数据结构学习——队列</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-er/">数据结构学习——栈（二）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/shu-ju-jie-gou-xue-xi-zhan-yi/">数据结构学习——栈（一）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://wylovecoding.github.io/post/about/">关于</a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://wylovecoding.github.io/tag/q70utjvai/" class="badge success">
-          算法学习
-        </a>
-      
-        <a href="https://wylovecoding.github.io/tag/ov8AxLVRR/" class="badge secondary">
-          Java
-        </a>
-      
-        <a href="https://wylovecoding.github.io/tag/Cy8dFWKpa/" class="badge warning">
-          数据结构学习
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://wylovecoding.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    // md5.min.js
+    !function(n){
+        "use strict";
+        function d(n,t){var r=(65535&n)+(65535&t);return(n>>16)+(t>>16)+(r>>16)<<16|65535&r}
+        function f(n,t,r,e,o,u){return d((c=d(d(t,n),d(e,u)))<<(f=o)|c>>>32-f,r);var c,f}
+        function l(n,t,r,e,o,u,c){return f(t&r|~t&e,n,t,o,u,c)}
+        function v(n,t,r,e,o,u,c){return f(t&e|r&~e,n,t,o,u,c)}
+        function g(n,t,r,e,o,u,c){return f(t^r^e,n,t,o,u,c)}
+        function m(n,t,r,e,o,u,c){return f(r^(t|~e),n,t,o,u,c)}
+        function i(n,t){var r,e,o,u,c;n[t>>5]|=128<<t%32,n[14+(t+64>>>9<<4)]=t;var f=1732584193,i=-271733879,a=-1732584194,h=271733878;for(r=0;r<n.length;r+=16)f=l(e=f,o=i,u=a,c=h,n[r],7,-680876936),h=l(h,f,i,a,n[r+1],12,-389564586),a=l(a,h,f,i,n[r+2],17,606105819),i=l(i,a,h,f,n[r+3],22,-1044525330),f=l(f,i,a,h,n[r+4],7,-176418897),h=l(h,f,i,a,n[r+5],12,1200080426),a=l(a,h,f,i,n[r+6],17,-1473231341),i=l(i,a,h,f,n[r+7],22,-45705983),f=l(f,i,a,h,n[r+8],7,1770035416),h=l(h,f,i,a,n[r+9],12,-1958414417),a=l(a,h,f,i,n[r+10],17,-42063),i=l(i,a,h,f,n[r+11],22,-1990404162),f=l(f,i,a,h,n[r+12],7,1804603682),h=l(h,f,i,a,n[r+13],12,-40341101),a=l(a,h,f,i,n[r+14],17,-1502002290),f=v(f,i=l(i,a,h,f,n[r+15],22,1236535329),a,h,n[r+1],5,-165796510),h=v(h,f,i,a,n[r+6],9,-1069501632),a=v(a,h,f,i,n[r+11],14,643717713),i=v(i,a,h,f,n[r],20,-373897302),f=v(f,i,a,h,n[r+5],5,-701558691),h=v(h,f,i,a,n[r+10],9,38016083),a=v(a,h,f,i,n[r+15],14,-660478335),i=v(i,a,h,f,n[r+4],20,-405537848),f=v(f,i,a,h,n[r+9],5,568446438),h=v(h,f,i,a,n[r+14],9,-1019803690),a=v(a,h,f,i,n[r+3],14,-187363961),i=v(i,a,h,f,n[r+8],20,1163531501),f=v(f,i,a,h,n[r+13],5,-1444681467),h=v(h,f,i,a,n[r+2],9,-51403784),a=v(a,h,f,i,n[r+7],14,1735328473),f=g(f,i=v(i,a,h,f,n[r+12],20,-1926607734),a,h,n[r+5],4,-378558),h=g(h,f,i,a,n[r+8],11,-2022574463),a=g(a,h,f,i,n[r+11],16,1839030562),i=g(i,a,h,f,n[r+14],23,-35309556),f=g(f,i,a,h,n[r+1],4,-1530992060),h=g(h,f,i,a,n[r+4],11,1272893353),a=g(a,h,f,i,n[r+7],16,-155497632),i=g(i,a,h,f,n[r+10],23,-1094730640),f=g(f,i,a,h,n[r+13],4,681279174),h=g(h,f,i,a,n[r],11,-358537222),a=g(a,h,f,i,n[r+3],16,-722521979),i=g(i,a,h,f,n[r+6],23,76029189),f=g(f,i,a,h,n[r+9],4,-640364487),h=g(h,f,i,a,n[r+12],11,-421815835),a=g(a,h,f,i,n[r+15],16,530742520),f=m(f,i=g(i,a,h,f,n[r+2],23,-995338651),a,h,n[r],6,-198630844),h=m(h,f,i,a,n[r+7],10,1126891415),a=m(a,h,f,i,n[r+14],15,-1416354905),i=m(i,a,h,f,n[r+5],21,-57434055),f=m(f,i,a,h,n[r+12],6,1700485571),h=m(h,f,i,a,n[r+3],10,-1894986606),a=m(a,h,f,i,n[r+10],15,-1051523),i=m(i,a,h,f,n[r+1],21,-2054922799),f=m(f,i,a,h,n[r+8],6,1873313359),h=m(h,f,i,a,n[r+15],10,-30611744),a=m(a,h,f,i,n[r+6],15,-1560198380),i=m(i,a,h,f,n[r+13],21,1309151649),f=m(f,i,a,h,n[r+4],6,-145523070),h=m(h,f,i,a,n[r+11],10,-1120210379),a=m(a,h,f,i,n[r+2],15,718787259),i=m(i,a,h,f,n[r+9],21,-343485551),f=d(f,e),i=d(i,o),a=d(a,u),h=d(h,c);return[f,i,a,h]}
+        function a(n){var t,r="",e=32*n.length;for(t=0;t<e;t+=8)r+=String.fromCharCode(n[t>>5]>>>t%32&255);return r}
+        function h(n){var t,r=[];for(r[(n.length>>2)-1]=void 0,t=0;t<r.length;t+=1)r[t]=0;var e=8*n.length;for(t=0;t<e;t+=8)r[t>>5]|=(255&n.charCodeAt(t/8))<<t%32;return r}
+        function e(n){var t,r,e="0123456789abcdef",o="";for(r=0;r<n.length;r+=1)t=n.charCodeAt(r),o+=e.charAt(t>>>4&15)+e.charAt(15&t);return o}
+        function r(n){return unescape(encodeURIComponent(n))}
+        function o(n){return a(i(h(t=r(n)),8*t.length));var t}
+        function u(n,t){return function(n,t){var r,e,o=h(n),u=[],c=[];for(u[15]=c[15]=void 0,16<o.length&&(o=i(o,8*n.length)),r=0;r<16;r+=1)u[r]=909522486^o[r],c[r]=1549556828^o[r];return e=i(u.concat(h(t)),512+8*t.length),a(i(c.concat(e),640))}(r(n),r(t))}
+        function t(n,t,r){return t?r?u(t,n):e(u(t,n)):r?o(n):e(o(n))}
+        "function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:n.md5=t;
+    }(this);
 </script>
 
 
+<div id="gitalk-container"></div>
 
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
+<script>
 
-      var gitalk = new Gitalk({
-        clientID: '0336ce3b4548dfa0ca0c',
-        clientSecret: '6ac1508cfb95a6b54215894ea49a6e18920e546f',
-        repo: 'wylovecoding.github.io',
-        owner: 'wyLoveCoding',
-        admin: ['wyLoveCoding'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
+  var gitalk = new Gitalk({
+    clientID: '0336ce3b4548dfa0ca0c',
+    clientSecret: '6ac1508cfb95a6b54215894ea49a6e18920e546f',
+    repo: 'wylovecoding.github.io',
+    owner: 'wyLoveCoding',
+    admin: ['wyLoveCoding'],
+    id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false       // Facebook-like distraction free mode
+  })
 
-      gitalk.render('gitalk-container')
+  gitalk.render('gitalk-container')
 
-    </script>
-  
+</script>
 
-  
+            
 
+            
+        
 
+        
 
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">心中无女人，编码自然神(●'◡'●)</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/wyLoveCoding" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wylovecoding.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
 
-  </body>
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
 </html>
